@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anshumat Foundation - Empowering Communities Through Education</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+    darkMode: 'class'
+    }
+</script>
+
+    <script>
+        // Initialize dark mode before page loads to prevent flash
+        if (localStorage.getItem('darkMode') === 'true' || 
+            (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .fade-in:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in:nth-child(2) { animation-delay: 0.3s; }
+        .fade-in:nth-child(3) { animation-delay: 0.5s; }
+        .fade-in:nth-child(4) { animation-delay: 0.7s; }
+        .fade-in:nth-child(5) { animation-delay: 0.9s; }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .slide-in {
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideIn 0.8s ease-out forwards;
+        }
+        
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .btn-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-900 shadow-lg sticky top-0 z-50 transition-colors">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">A</span>
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold text-gray-900 dark:text-white">Anshumat Foundation</span>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Empowering Communities</p>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition-colors">Home</a>
+                    <a href="#about" class="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition-colors">About</a>
+                    <a href="#programs" class="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition-colors">Programs</a>
+                    <a href="#impact" class="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition-colors">Impact</a>
+                    <a href="#contact" class="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition-colors">Contact</a>
+                    <button id="dark-mode-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <svg id="sun-icon" class="w-5 h-5 text-gray-600 dark:text-gray-300 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <svg id="moon-icon" class="w-5 h-5 text-gray-600 dark:text-gray-300 block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                    <button onclick="showDonateMessage()" class="gradient-bg text-white px-6 py-2 rounded-full hover:opacity-90 transition-opacity font-medium">
+                        Donate Now
+                    </button>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center space-x-2">
+                    <button id="mobile-dark-mode-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <svg id="mobile-sun-icon" class="w-5 h-5 text-gray-600 dark:text-gray-300 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <svg id="mobile-moon-icon" class="w-5 h-5 text-gray-600 dark:text-gray-300 block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <svg class="w-6 h-6 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+                <div class="px-6 py-4 space-y-3">
+                    <a href="#home" class="block text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors py-2 font-medium">Home</a>
+                    <a href="#about" class="block text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors py-2 font-medium">About</a>
+                    <a href="#programs" class="block text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors py-2 font-medium">Programs</a>
+                    <a href="#impact" class="block text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors py-2 font-medium">Impact</a>
+                    <a href="#contact" class="block text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors py-2 font-medium">Contact</a>
+                    <button onclick="showDonateMessage(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full gradient-bg text-white px-4 py-2 rounded-full hover:opacity-90 transition-opacity mt-3 font-medium">
+                        Donate Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="py-20 gradient-bg relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <svg class="absolute top-20 left-20 w-32 h-32 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"></path>
+            </svg>
+            <svg class="absolute bottom-20 right-20 w-24 h-24 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+            </svg>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
+            <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 fade-in">
+                Empowering Communities
+                <span class="block text-yellow-300">Through Education</span>
+            </h1>
+            <p class="text-xl text-purple-100 mb-8 max-w-3xl mx-auto fade-in">
+                Building a brighter future by providing quality education, skill development, and community support to underserved populations across India.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
+                <button onclick="scrollToSection('programs')" class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold btn-hover">
+                    Explore Our Programs
+                </button>
+                <button onclick="scrollToSection('about')" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition-all">
+                    Learn Our Story
+                </button>
+            </div>
+            
+            <!-- Impact Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 fade-in">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-yellow-300 mb-2">10,000+</div>
+                    <div class="text-purple-100">Lives Transformed</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-yellow-300 mb-2">150+</div>
+                    <div class="text-purple-100">Villages Reached</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-yellow-300 mb-2">25+</div>
+                    <div class="text-purple-100">Programs Running</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-yellow-300 mb-2">8</div>
+                    <div class="text-purple-100">Years of Impact</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white dark:bg-gray-800 transition-colors">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 slide-in">About Anshumat Foundation</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto slide-in">
+                    Founded with a vision to create lasting change in rural and underserved communities, we believe that education is the most powerful tool for transformation.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-12 mb-16">
+                <div class="text-center card-hover bg-gray-50 dark:bg-gray-700 rounded-2xl p-8 fade-in transition-colors">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Our Mission</h3>
+                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                        To empower underserved communities through comprehensive education programs, skill development initiatives, and sustainable community development projects.
+                    </p>
+                </div>
+                
+                <div class="text-center card-hover bg-gray-50 dark:bg-gray-700 rounded-2xl p-8 fade-in transition-colors">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Our Vision</h3>
+                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                        A world where every individual, regardless of their background, has access to quality education and opportunities for personal and professional growth.
+                    </p>
+                </div>
+                
+                <div class="text-center card-hover bg-gray-50 dark:bg-gray-700 rounded-2xl p-8 fade-in transition-colors">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Our Values</h3>
+                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                        Integrity, compassion, innovation, and sustainability guide our work as we strive to create meaningful and lasting impact in every community we serve.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Founder's Message -->
+            <div class="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-gray-700 dark:to-gray-600 rounded-3xl p-12 text-center transition-colors">
+                <div class="max-w-4xl mx-auto">
+                    <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Founder's Message</h3>
+                    <p class="text-lg text-gray-700 dark:text-gray-200 leading-relaxed mb-6 italic">
+                        "Education is not just about learning facts, but about transforming lives and communities. At Anshumat Foundation, we believe that every child deserves the opportunity to dream big and achieve their potential, regardless of their circumstances."
+                    </p>
+                    <div class="flex items-center justify-center space-x-4">
+                        <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">AF</span>
+                        </div>
+                        <div class="text-left">
+                            <p class="font-semibold text-gray-900 dark:text-white">Anshumat Foundation Team</p>
+                            <p class="text-gray-600 dark:text-gray-300">Founders & Directors</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 slide-in">Our Programs</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto slide-in">
+                    Comprehensive initiatives designed to address the diverse needs of communities and create sustainable change.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover fade-in transition-colors">
+                    <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Primary Education</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                        Establishing and supporting primary schools in rural areas, providing quality education to children who lack access to formal schooling.
+                    </p>
+                    <button onclick="showProgramInfo('education')" class="text-blue-600 font-semibold hover:text-blue-700 transition-colors">
+                        Learn More →
+                    </button>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover fade-in transition-colors">
+                    <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Skill Development</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                        Vocational training programs in tailoring, computer literacy, agriculture, and other practical skills to enhance employability.
+                    </p>
+                    <button onclick="showProgramInfo('skills')" class="text-green-600 dark:text-green-400 font-semibold hover:text-green-700 dark:hover:text-green-300 transition-colors">
+                        Learn More →
+                    </button>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover fade-in transition-colors">
+                    <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Women Empowerment</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                        Special programs focused on empowering women through education, skill training, and entrepreneurship opportunities.
+                    </p>
+                    <button onclick="showProgramInfo('women')" class="text-purple-600 dark:text-purple-400 font-semibold hover:text-purple-700 dark:hover:text-purple-300 transition-colors">
+                        Learn More →
+                    </button>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover fade-in transition-colors">
+                    <div class="w-16 h-16 bg-red-100 dark:bg-red-900 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Healthcare Initiatives</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                        Health awareness programs, medical camps, and support for basic healthcare needs in underserved communities.
+                    </p>
+                    <button onclick="showProgramInfo('healthcare')" class="text-red-600 dark:text-red-400 font-semibold hover:text-red-700 dark:hover:text-red-300 transition-colors">
+                        Learn More →
+                    </button>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover fade-in transition-colors">
+                    <div class="w-16 h-16 bg-yellow-100 dark:bg-yellow-900 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-yellow-600 dark:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Digital Literacy</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                        Computer training and digital literacy programs to bridge the digital divide and prepare communities for the modern world.
+                    </p>
+                    <button onclick="showProgramInfo('digital')" class="text-yellow-600 dark:text-yellow-400 font-semibold hover:text-yellow-700 dark:hover:text-yellow-300 transition-colors">
+                        Learn More →
+                    </button>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover fade-in transition-colors">
+                    <div class="w-16 h-16 bg-indigo-100 dark:bg-indigo-900 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Community Development</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                        Infrastructure development, clean water initiatives, and sustainable development projects for rural communities.
+                    </p>
+                    <button onclick="showProgramInfo('community')" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors">
+                        Learn More →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="py-20 bg-white dark:bg-gray-800 transition-colors">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 slide-in">Our Impact</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto slide-in">
+                    Real stories and measurable outcomes from our work in communities across India.
+                </p>
+            </div>
+            
+            <!-- Success Stories -->
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 card-hover fade-in">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                            P
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-lg">Priya Sharma</h4>
+                            <p class="text-sm text-gray-600">Village: Rampur, UP</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic leading-relaxed">
+                        "Thanks to Anshumat Foundation's tailoring program, I now run my own business and support my family. I've trained 15 other women in my village, creating a network of empowered entrepreneurs."
+                    </p>
+                    <div class="flex text-yellow-400 mt-4">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-8 card-hover fade-in">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                            R
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-lg">Rajesh Kumar</h4>
+                            <p class="text-sm text-gray-600">Village: Bhagalpur, Bihar</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic leading-relaxed">
+                        "The computer literacy program changed my life. I went from farming to working in a tech company in the city. Now I send money home and my children have better opportunities."
+                    </p>
+                    <div class="flex text-yellow-400 mt-4">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 card-hover fade-in">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                            S
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-lg">Sunita Devi</h4>
+                            <p class="text-sm text-gray-600">Village: Durgapur, WB</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic leading-relaxed">
+                        "My daughter is the first in our family to complete high school, thanks to the foundation's education program. She dreams of becoming a teacher and helping other children."
+                    </p>
+                    <div class="flex text-yellow-400 mt-4">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                </div>
+            </div>
+
+            <!-- Impact Numbers -->
+            <div class="bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl p-12 text-white">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold mb-4">Measurable Impact</h3>
+                    <p class="text-purple-100 text-lg">Numbers that tell our story of transformation</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-yellow-300 mb-2">5,000+</div>
+                        <div class="text-purple-100">Children Educated</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-yellow-300 mb-2">2,500+</div>
+                        <div class="text-purple-100">Women Trained</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-yellow-300 mb-2">100+</div>
+                        <div class="text-purple-100">Villages Impacted</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-yellow-300 mb-2">85%</div>
+                        <div class="text-purple-100">Employment Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 slide-in">Get Involved</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 slide-in">
+                    Join us in our mission to transform lives through education and community development.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 fade-in transition-colors">
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Send us a Message</h3>
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Full Name</label>
+                                <input type="text" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Email Address</label>
+                                <input type="email" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Subject</label>
+                            <select class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors">
+                                <option>General Inquiry</option>
+                                <option>Volunteer Opportunity</option>
+                                <option>Partnership</option>
+                                <option>Donation</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Message</label>
+                            <textarea rows="4" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none transition-colors"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full gradient-bg text-white py-3 rounded-lg font-semibold btn-hover">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="space-y-8 fade-in">
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 transition-colors">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 dark:text-white mb-1">Head Office</h4>
+                                    <p class="text-gray-600 dark:text-gray-300">New Bidhan Polly, Bonsol, Durgapur,<br>West Bengal 713363 India</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 dark:text-white mb-1">Email</h4>
+                                    <p class="text-gray-600 dark:text-gray-300">contact@anshumat.org</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 dark:text-white mb-1">Working Hours</h4>
+                                    <p class="text-gray-600 dark:text-gray-300">Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 9:00 AM - 2:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Call to Action -->
+                    <div class="gradient-bg rounded-2xl p-8 text-white text-center">
+                        <h3 class="text-2xl font-bold mb-4">Ready to Make a Difference?</h3>
+                        <p class="text-purple-100 mb-6">Join our mission to transform lives through education and community development.</p>
+                        <button onclick="showVolunteerInfo()" class="bg-white text-purple-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                            Become a Volunteer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <!-- Logo and Description -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">A</span>
+                        </div>
+                        <div>
+                            <span class="text-xl font-bold">Anshumat Foundation</span>
+                            <p class="text-sm text-gray-400">Empowering Communities</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Dedicated to transforming lives through education, skill development, and community empowerment across rural India.
+                    </p>
+
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#programs" class="text-gray-300 hover:text-white transition-colors">Our Programs</a></li>
+                        <li><a href="#impact" class="text-gray-300 hover:text-white transition-colors">Impact Stories</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-white transition-colors">Get Involved</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                    <div class="space-y-2 text-gray-300">
+                        <p class="text-sm">New Bidhan Polly, Bonsol</p>
+                        <p class="text-sm">Durgapur, WB 713363</p>
+                        <p class="text-sm">contact@anshumat.org</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="border-t border-gray-800 pt-6 text-center">
+                <p class="text-gray-400 text-sm">© 2025 Anshumat Foundation. All rights reserved. Empowering communities through education.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 gradient-bg text-white p-3 rounded-full shadow-lg hover:opacity-90 transition-all duration-300 opacity-0 invisible">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
+    <!-- Modal -->
+    <div id="simple-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-md w-full p-8 transition-colors">
+            <div class="text-center">
+                <div id="modal-icon" class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <!-- Icon will be inserted here -->
+                </div>
+                <h3 id="modal-title" class="text-xl font-bold text-gray-900 dark:text-white mb-3">Title</h3>
+                <p id="modal-message" class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">Message content</p>
+                <button onclick="closeModal()" class="gradient-bg text-white px-6 py-2 rounded-full font-semibold hover:opacity-90 transition-opacity">
+                    Got it
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Add smooth scrolling to navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                scrollToSection(targetId);
+            });
+        });
+
+        // Modal functions
+        function showModal(title, message, iconClass, iconColor) {
+            const modal = document.getElementById('simple-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalMessage = document.getElementById('modal-message');
+            const modalIcon = document.getElementById('modal-icon');
+            
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            modalIcon.className = `w-16 h-16 ${iconColor} rounded-full flex items-center justify-center mx-auto mb-4`;
+            modalIcon.innerHTML = `<svg class="w-8 h-8 ${iconClass}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>`;
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('simple-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Program information
+        function showProgramInfo(program) {
+            const programs = {
+                education: {
+                    title: 'Primary Education Program',
+                    message: 'We establish and support primary schools in rural areas, providing quality education to over 5,000 children who previously lacked access to formal schooling. Our curriculum focuses on foundational literacy, numeracy, and life skills.'
+                },
+                skills: {
+                    title: 'Skill Development Initiative',
+                    message: 'Our vocational training programs in tailoring, computer literacy, agriculture, and handicrafts have empowered over 2,500 individuals with marketable skills, leading to an 85% employment rate among graduates.'
+                },
+                women: {
+                    title: 'Women Empowerment Program',
+                    message: 'Through specialized training in entrepreneurship, financial literacy, and vocational skills, we have empowered over 1,500 women to become financially independent and community leaders.'
+                },
+                healthcare: {
+                    title: 'Healthcare Initiatives',
+                    message: 'Our health programs include regular medical camps, health awareness sessions, and support for basic healthcare needs, reaching over 10,000 individuals in remote communities.'
+                },
+                digital: {
+                    title: 'Digital Literacy Program',
+                    message: 'We bridge the digital divide through computer training centers and digital literacy programs, preparing rural communities for opportunities in the digital economy.'
+                },
+                community: {
+                    title: 'Community Development',
+                    message: 'Our infrastructure projects include clean water initiatives, school buildings, and sustainable development projects that have directly benefited over 100 villages across India.'
+                }
+            };
+            
+            const info = programs[program];
+            showModal(info.title, info.message, 'text-blue-600', 'bg-blue-100');
+        }
+
+        // Donate message
+        function showDonateMessage() {
+            showModal('Thank You for Your Interest!', 'Your support helps us continue our mission of empowering communities through education and development. For donation information, please contact us directly at contact@anshumat.org. This is a demo website - actual donation processing would be implemented separately.', 'text-green-600', 'bg-green-100');
+        }
+
+        // Volunteer info
+        function showVolunteerInfo() {
+            showModal('Join Our Mission!', 'We welcome volunteers who are passionate about education and community development. Whether you can teach, provide technical skills, or help with administrative tasks, there is a place for you. Contact us at contact@anshumat.org to learn more about volunteer opportunities.', 'text-purple-600', 'bg-purple-100');
+        }
+
+        // Contact form
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            showModal('Message Sent!', 'Thank you for reaching out to Anshumat Foundation. We will get back to you within 24 hours. (This is a demo - form submission is not functional)', 'text-green-600', 'bg-green-100');
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('simple-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Dark mode functionality
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const isDark = html.classList.contains('dark');
+            
+            if (isDark) {
+                html.classList.remove('dark');
+                localStorage.setItem('darkMode', 'false');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('darkMode', 'true');
+            }
+            
+            updateDarkModeIcons();
+        }
+
+        function updateDarkModeIcons() {
+            const isDark = document.documentElement.classList.contains('dark');
+            
+            // Desktop icons
+            const sunIcon = document.getElementById('sun-icon');
+            const moonIcon = document.getElementById('moon-icon');
+            
+            // Mobile icons
+            const mobileSunIcon = document.getElementById('mobile-sun-icon');
+            const mobileMoonIcon = document.getElementById('mobile-moon-icon');
+            
+            if (isDark) {
+                // Show sun icons (to switch back to light)
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+                mobileSunIcon.classList.remove('hidden');
+                mobileMoonIcon.classList.add('hidden');
+            } else {
+                // Show moon icons (to switch to dark)
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+                mobileSunIcon.classList.add('hidden');
+                mobileMoonIcon.classList.remove('hidden');
+            }
+        }
+
+        // Initialize dark mode from localStorage or system preference
+        function initializeDarkMode() {
+            const savedMode = localStorage.getItem('darkMode');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedMode === 'true' || (savedMode === null && prefersDark)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+            
+            updateDarkModeIcons();
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDarkMode();
+            
+            // Dark mode toggle event listeners
+            document.getElementById('dark-mode-toggle').addEventListener('click', toggleDarkMode);
+            document.getElementById('mobile-dark-mode-toggle').addEventListener('click', toggleDarkMode);
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Back to top button
+        const backToTopBtn = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+                backToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+                backToTopBtn.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'979f7874731b549c',t:'MTc1NzAwOTcwOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
