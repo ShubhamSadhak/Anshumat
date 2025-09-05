@@ -10,7 +10,6 @@
     darkMode: 'class'
     }
 </script>
-
     <script>
         // Initialize dark mode before page loads to prevent flash
         if (localStorage.getItem('darkMode') === 'true' || 
@@ -51,6 +50,564 @@
             to {
                 opacity: 1;
                 transform: translateX(0);
+            }
+        }
+
+        /* Enhanced Hero Animations */
+        .hero-title {
+            opacity: 0;
+            transform: translateY(50px) scale(0.9);
+            animation: heroTitleIn 1.2s ease-out 0.3s forwards;
+        }
+
+        .hero-subtitle {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: heroSubtitleIn 1s ease-out 0.8s forwards;
+        }
+
+        .hero-buttons {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: heroButtonsIn 1s ease-out 1.3s forwards;
+        }
+
+        .hero-stats {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: heroStatsIn 1.2s ease-out 1.8s forwards;
+        }
+
+        @keyframes heroTitleIn {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes heroSubtitleIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heroButtonsIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heroStatsIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating Background Elements */
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(2) {
+            animation-delay: -2s;
+            animation-duration: 8s;
+        }
+
+        .floating-element:nth-child(3) {
+            animation-delay: -4s;
+            animation-duration: 7s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        /* Stat Counter Animation */
+        .stat-number {
+            display: inline-block;
+            animation: countUp 2s ease-out 2s forwards;
+        }
+
+        @keyframes countUp {
+            from {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Pulse Animation for CTA Buttons */
+        .pulse-glow {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pulse-glow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* Typewriter Effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid #fbbf24;
+            white-space: nowrap;
+            animation: typing 3s steps(20) 0.5s forwards, blink 1s infinite 3.5s;
+            width: 0;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+            0%, 50% {
+                border-color: #fbbf24;
+            }
+            51%, 100% {
+                border-color: transparent;
+            }
+        }
+
+        /* Letter Hover Animations */
+        .hover-letter {
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .hover-letter:hover {
+            transform: translateY(-8px) scale(1.1);
+            color: #fbbf24;
+            text-shadow: 0 8px 20px rgba(251, 191, 36, 0.4);
+            animation: letterBounce 0.6s ease-in-out;
+        }
+
+        @keyframes letterBounce {
+            0%, 100% {
+                transform: translateY(-8px) scale(1.1);
+            }
+            50% {
+                transform: translateY(-12px) scale(1.15);
+            }
+        }
+
+        .hover-word {
+            display: inline-block;
+            transition: all 0.4s ease;
+            cursor: default;
+        }
+
+        .hover-word:hover {
+            transform: scale(1.05) rotate(2deg);
+            color: #fbbf24;
+            text-shadow: 0 10px 25px rgba(251, 191, 36, 0.3);
+        }
+
+        .hover-paragraph {
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .hover-paragraph:hover {
+            transform: translateY(-3px);
+            color: #e0e7ff;
+            text-shadow: 0 5px 15px rgba(224, 231, 255, 0.2);
+        }
+
+        /* Glowing text effect */
+        .glow-on-hover {
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .glow-on-hover:hover {
+            color: #fbbf24;
+            text-shadow: 
+                0 0 5px #fbbf24,
+                0 0 10px #fbbf24,
+                0 0 15px #fbbf24,
+                0 0 20px #fbbf24;
+            animation: textGlow 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from {
+                text-shadow: 
+                    0 0 5px #fbbf24,
+                    0 0 10px #fbbf24,
+                    0 0 15px #fbbf24,
+                    0 0 20px #fbbf24;
+            }
+            to {
+                text-shadow: 
+                    0 0 10px #fbbf24,
+                    0 0 20px #fbbf24,
+                    0 0 30px #fbbf24,
+                    0 0 40px #fbbf24;
+            }
+        }
+
+        /* Rainbow text effect */
+        .rainbow-hover {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .rainbow-hover:hover {
+            animation: rainbowShift 2s ease-in-out infinite;
+            transform: scale(1.05);
+        }
+
+        @keyframes rainbowShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Morphing Card Animation */
+        .morph-card {
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+            transform-style: preserve-3d;
+        }
+
+        .morph-card:hover {
+            transform: rotateY(10deg) rotateX(10deg) scale(1.05);
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.1),
+                0 0 0 1px rgba(255,255,255,0.1);
+        }
+
+        /* Liquid Button Effect */
+        .liquid-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .liquid-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            transition: all 0.6s ease;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .liquid-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Elastic Text Animation */
+        .elastic-text {
+            display: inline-block;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .elastic-text:hover {
+            transform: scale(1.2) rotate(-5deg);
+            color: #fbbf24;
+            text-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+        }
+
+        /* Magnetic Effect */
+        .magnetic {
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+
+        .magnetic:hover {
+            transform: translate(10px, -10px);
+            box-shadow: -10px 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Neon Glow Effect */
+        .neon-glow {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .neon-glow:hover {
+            border-color: #00ffff;
+            box-shadow: 
+                0 0 5px #00ffff,
+                0 0 10px #00ffff,
+                0 0 15px #00ffff,
+                inset 0 0 5px #00ffff;
+            animation: neonPulse 1.5s infinite alternate;
+        }
+
+        @keyframes neonPulse {
+            from {
+                box-shadow: 
+                    0 0 5px #00ffff,
+                    0 0 10px #00ffff,
+                    0 0 15px #00ffff,
+                    inset 0 0 5px #00ffff;
+            }
+            to {
+                box-shadow: 
+                    0 0 10px #00ffff,
+                    0 0 20px #00ffff,
+                    0 0 30px #00ffff,
+                    inset 0 0 10px #00ffff;
+            }
+        }
+
+        /* Wobble Animation */
+        .wobble-hover:hover {
+            animation: wobble 0.8s ease-in-out;
+        }
+
+        @keyframes wobble {
+            0% { transform: translateX(0%); }
+            15% { transform: translateX(-25px) rotate(-5deg); }
+            30% { transform: translateX(20px) rotate(3deg); }
+            45% { transform: translateX(-15px) rotate(-3deg); }
+            60% { transform: translateX(10px) rotate(2deg); }
+            75% { transform: translateX(-5px) rotate(-1deg); }
+            100% { transform: translateX(0%); }
+        }
+
+        /* Flip Card Effect */
+        .flip-card {
+            perspective: 1000px;
+            height: 200px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+
+        /* Particle Effect */
+        .particle-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fbbf24;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particleFloat 3s infinite ease-in-out;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 0.5;
+            }
+        }
+
+        /* Ripple Effect */
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .ripple:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Breathing Animation */
+        .breathing {
+            animation: breathe 4s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Slide and Reveal */
+        .slide-reveal {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-reveal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .slide-reveal:hover::before {
+            left: 100%;
+        }
+
+        /* Bounce In Effect */
+        .bounce-in {
+            animation: bounceIn 1s ease-out;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Typewriter with Cursor */
+        .typewriter-cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+            color: #fbbf24;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Shake effect for stats */
+        .shake-hover {
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .shake-hover:hover {
+            animation: shake 0.5s ease-in-out;
+            color: #fbbf24;
+            transform: scale(1.1);
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0) scale(1.1); }
+            25% { transform: translateX(-5px) scale(1.1); }
+            75% { transform: translateX(5px) scale(1.1); }
+        }
+
+        /* Pulse effect */
+        .pulse-hover {
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .pulse-hover:hover {
+            animation: textPulse 1s ease-in-out infinite;
+            color: #fbbf24;
+        }
+
+        @keyframes textPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
             }
         }
         
@@ -154,50 +711,53 @@
 
     <!-- Hero Section -->
     <section id="home" class="py-20 gradient-bg relative overflow-hidden">
-        <!-- Background Pattern -->
+        <!-- Animated Background Pattern -->
         <div class="absolute inset-0 opacity-10">
-            <svg class="absolute top-20 left-20 w-32 h-32 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <svg class="absolute top-20 left-20 w-32 h-32 text-white floating-element" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"></path>
             </svg>
-            <svg class="absolute bottom-20 right-20 w-24 h-24 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <svg class="absolute bottom-20 right-20 w-24 h-24 text-white floating-element" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+            </svg>
+            <svg class="absolute top-1/2 left-1/4 w-16 h-16 text-white floating-element" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
         </div>
         
         <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
-            <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 fade-in">
-                Empowering Communities
-                <span class="block text-yellow-300">Through Education</span>
+            <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 hero-title">
+                <span class="rainbow-hover">Empowering</span> <span class="rainbow-hover">Communities</span>
+                <span class="block text-yellow-300 typewriter rainbow-hover">Through Education</span>
             </h1>
-            <p class="text-xl text-purple-100 mb-8 max-w-3xl mx-auto fade-in">
-                Building a brighter future by providing quality education, skill development, and community support to underserved populations across India.
+            <p class="text-xl text-purple-100 mb-8 max-w-3xl mx-auto hero-subtitle hover-paragraph">
+                <span class="hover-word">Building</span> <span class="hover-word">a</span> <span class="hover-word">brighter</span> <span class="hover-word">future</span> <span class="hover-word">by</span> <span class="hover-word">providing</span> <span class="hover-word">quality</span> <span class="hover-word">education,</span> <span class="hover-word">skill</span> <span class="hover-word">development,</span> <span class="hover-word">and</span> <span class="hover-word">community</span> <span class="hover-word">support</span> <span class="hover-word">to</span> <span class="hover-word">underserved</span> <span class="hover-word">populations</span> <span class="hover-word">across</span> <span class="hover-word">India.</span>
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
-                <button onclick="scrollToSection('programs')" class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold btn-hover">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center hero-buttons">
+                <button onclick="scrollToSection('programs')" class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold liquid-btn slide-reveal">
                     Explore Our Programs
                 </button>
-                <button onclick="scrollToSection('about')" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition-all">
+                <button onclick="scrollToSection('about')" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold liquid-btn ripple hover:bg-white hover:text-purple-600 transition-all">
                     Learn Our Story
                 </button>
             </div>
             
             <!-- Impact Stats -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 fade-in">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 hero-stats">
                 <div class="text-center">
-                    <div class="text-4xl font-bold text-yellow-300 mb-2">10,000+</div>
-                    <div class="text-purple-100">Lives Transformed</div>
+                    <div class="text-4xl font-bold text-yellow-300 mb-2 stat-number shake-hover">10,000+</div>
+                    <div class="text-purple-100 pulse-hover">Lives Transformed</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-4xl font-bold text-yellow-300 mb-2">150+</div>
-                    <div class="text-purple-100">Villages Reached</div>
+                    <div class="text-4xl font-bold text-yellow-300 mb-2 stat-number shake-hover">150+</div>
+                    <div class="text-purple-100 pulse-hover">Villages Reached</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-4xl font-bold text-yellow-300 mb-2">25+</div>
-                    <div class="text-purple-100">Programs Running</div>
+                    <div class="text-4xl font-bold text-yellow-300 mb-2 stat-number shake-hover">25+</div>
+                    <div class="text-purple-100 pulse-hover">Programs Running</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-4xl font-bold text-yellow-300 mb-2">8</div>
-                    <div class="text-purple-100">Years of Impact</div>
+                    <div class="text-4xl font-bold text-yellow-300 mb-2 stat-number shake-hover">8</div>
+                    <div class="text-purple-100 pulse-hover">Years of Impact</div>
                 </div>
             </div>
         </div>
@@ -207,45 +767,45 @@
     <section id="about" class="py-20 bg-white dark:bg-gray-800 transition-colors">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 slide-in">About Anshumat Foundation</h2>
-                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto slide-in">
-                    Founded with a vision to create lasting change in rural and underserved communities, we believe that education is the most powerful tool for transformation.
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 slide-in letter-hover-effect">About Anshumat Foundation</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto slide-in hover-paragraph">
+                    <span class="hover-word">Founded</span> <span class="hover-word">with</span> <span class="hover-word">a</span> <span class="hover-word">vision</span> <span class="hover-word">to</span> <span class="hover-word">create</span> <span class="hover-word">lasting</span> <span class="hover-word">change</span> <span class="hover-word">in</span> <span class="hover-word">rural</span> <span class="hover-word">and</span> <span class="hover-word">underserved</span> <span class="hover-word">communities,</span> <span class="hover-word">we</span> <span class="hover-word">believe</span> <span class="hover-word">that</span> <span class="hover-word">education</span> <span class="hover-word">is</span> <span class="hover-word">the</span> <span class="hover-word">most</span> <span class="hover-word">powerful</span> <span class="hover-word">tool</span> <span class="hover-word">for</span> <span class="hover-word">transformation.</span>
                 </p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-12 mb-16">
-                <div class="text-center card-hover bg-gray-50 dark:bg-gray-700 rounded-2xl p-8 fade-in transition-colors">
-                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
+                <div class="text-center morph-card bg-gray-50 dark:bg-gray-700 rounded-2xl p-8 fade-in transition-colors">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6 breathing">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Our Mission</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 elastic-text">Our Mission</h3>
                     <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
                         To empower underserved communities through comprehensive education programs, skill development initiatives, and sustainable community development projects.
                     </p>
                 </div>
                 
-                <div class="text-center card-hover bg-gray-50 dark:bg-gray-700 rounded-2xl p-8 fade-in transition-colors">
-                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
+                <div class="text-center magnetic bg-gray-50 dark:bg-gray-700 rounded-2xl p-8 fade-in transition-colors">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6 wobble-hover">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Our Vision</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 elastic-text">Our Vision</h3>
                     <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
                         A world where every individual, regardless of their background, has access to quality education and opportunities for personal and professional growth.
                     </p>
                 </div>
                 
-                <div class="text-center card-hover bg-gray-50 dark:bg-gray-700 rounded-2xl p-8 fade-in transition-colors">
-                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
+                <div class="text-center neon-glow bg-gray-50 dark:bg-gray-700 rounded-2xl p-8 fade-in transition-colors">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6 ripple">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Our Values</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 elastic-text">Our Values</h3>
                     <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
                         Integrity, compassion, innovation, and sustainability guide our work as we strive to create meaningful and lasting impact in every community we serve.
                     </p>
@@ -277,99 +837,105 @@
     <section id="programs" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 slide-in">Our Programs</h2>
-                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto slide-in">
-                    Comprehensive initiatives designed to address the diverse needs of communities and create sustainable change.
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 slide-in letter-hover-effect">Our Programs</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto slide-in hover-paragraph">
+                    <span class="hover-word">Comprehensive</span> <span class="hover-word">initiatives</span> <span class="hover-word">designed</span> <span class="hover-word">to</span> <span class="hover-word">address</span> <span class="hover-word">the</span> <span class="hover-word">diverse</span> <span class="hover-word">needs</span> <span class="hover-word">of</span> <span class="hover-word">communities</span> <span class="hover-word">and</span> <span class="hover-word">create</span> <span class="hover-word">sustainable</span> <span class="hover-word">change.</span>
                 </p>
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover fade-in transition-colors">
-                    <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-2xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                        </svg>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-white dark:bg-gray-800 transition-colors">
+                            <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-2xl flex items-center justify-center mb-6">
+                                <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Primary Education</h3>
+                        </div>
+                        <div class="flip-card-back bg-blue-600 text-white">
+                            <p class="text-sm leading-relaxed mb-4 px-4">
+                                Establishing and supporting primary schools in rural areas, providing quality education to children who lack access to formal schooling.
+                            </p>
+                            <button onclick="showProgramInfo('education')" class="bg-white text-blue-600 px-4 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                                Learn More →
+                            </button>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Primary Education</h3>
-                    <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                        Establishing and supporting primary schools in rural areas, providing quality education to children who lack access to formal schooling.
-                    </p>
-                    <button onclick="showProgramInfo('education')" class="text-blue-600 font-semibold hover:text-blue-700 transition-colors">
-                        Learn More →
-                    </button>
                 </div>
                 
-                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover fade-in transition-colors">
-                    <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-2xl flex items-center justify-center mb-6">
+                <div class="morph-card bg-white dark:bg-gray-800 rounded-2xl p-8 fade-in transition-colors">
+                    <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-2xl flex items-center justify-center mb-6 particle-container">
                         <svg class="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Skill Development</h3>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 elastic-text">Skill Development</h3>
                     <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                         Vocational training programs in tailoring, computer literacy, agriculture, and other practical skills to enhance employability.
                     </p>
-                    <button onclick="showProgramInfo('skills')" class="text-green-600 dark:text-green-400 font-semibold hover:text-green-700 dark:hover:text-green-300 transition-colors">
+                    <button onclick="showProgramInfo('skills')" class="text-green-600 dark:text-green-400 font-semibold hover:text-green-700 dark:hover:text-green-300 transition-colors liquid-btn">
                         Learn More →
                     </button>
                 </div>
                 
-                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover fade-in transition-colors">
-                    <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-2xl flex items-center justify-center mb-6">
+                <div class="magnetic bg-white dark:bg-gray-800 rounded-2xl p-8 fade-in transition-colors">
+                    <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-2xl flex items-center justify-center mb-6 breathing">
                         <svg class="w-8 h-8 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Women Empowerment</h3>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 elastic-text">Women Empowerment</h3>
                     <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                         Special programs focused on empowering women through education, skill training, and entrepreneurship opportunities.
                     </p>
-                    <button onclick="showProgramInfo('women')" class="text-purple-600 dark:text-purple-400 font-semibold hover:text-purple-700 dark:hover:text-purple-300 transition-colors">
+                    <button onclick="showProgramInfo('women')" class="text-purple-600 dark:text-purple-400 font-semibold hover:text-purple-700 dark:hover:text-purple-300 transition-colors slide-reveal">
                         Learn More →
                     </button>
                 </div>
                 
-                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover fade-in transition-colors">
-                    <div class="w-16 h-16 bg-red-100 dark:bg-red-900 rounded-2xl flex items-center justify-center mb-6">
+                <div class="neon-glow bg-white dark:bg-gray-800 rounded-2xl p-8 fade-in transition-colors">
+                    <div class="w-16 h-16 bg-red-100 dark:bg-red-900 rounded-2xl flex items-center justify-center mb-6 wobble-hover">
                         <svg class="w-8 h-8 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Healthcare Initiatives</h3>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 elastic-text">Healthcare Initiatives</h3>
                     <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                         Health awareness programs, medical camps, and support for basic healthcare needs in underserved communities.
                     </p>
-                    <button onclick="showProgramInfo('healthcare')" class="text-red-600 dark:text-red-400 font-semibold hover:text-red-700 dark:hover:text-red-300 transition-colors">
+                    <button onclick="showProgramInfo('healthcare')" class="text-red-600 dark:text-red-400 font-semibold hover:text-red-700 dark:hover:text-red-300 transition-colors ripple">
                         Learn More →
                     </button>
                 </div>
                 
-                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover fade-in transition-colors">
-                    <div class="w-16 h-16 bg-yellow-100 dark:bg-yellow-900 rounded-2xl flex items-center justify-center mb-6">
+                <div class="morph-card bg-white dark:bg-gray-800 rounded-2xl p-8 fade-in transition-colors">
+                    <div class="w-16 h-16 bg-yellow-100 dark:bg-yellow-900 rounded-2xl flex items-center justify-center mb-6 ripple">
                         <svg class="w-8 h-8 text-yellow-600 dark:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Digital Literacy</h3>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 elastic-text">Digital Literacy</h3>
                     <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                         Computer training and digital literacy programs to bridge the digital divide and prepare communities for the modern world.
                     </p>
-                    <button onclick="showProgramInfo('digital')" class="text-yellow-600 dark:text-yellow-400 font-semibold hover:text-yellow-700 dark:hover:text-yellow-300 transition-colors">
+                    <button onclick="showProgramInfo('digital')" class="text-yellow-600 dark:text-yellow-400 font-semibold hover:text-yellow-700 dark:hover:text-yellow-300 transition-colors liquid-btn">
                         Learn More →
                     </button>
                 </div>
                 
-                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover fade-in transition-colors">
-                    <div class="w-16 h-16 bg-indigo-100 dark:bg-indigo-900 rounded-2xl flex items-center justify-center mb-6">
+                <div class="magnetic bg-white dark:bg-gray-800 rounded-2xl p-8 fade-in transition-colors">
+                    <div class="w-16 h-16 bg-indigo-100 dark:bg-indigo-900 rounded-2xl flex items-center justify-center mb-6 breathing">
                         <svg class="w-8 h-8 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Community Development</h3>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4 elastic-text">Community Development</h3>
                     <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                         Infrastructure development, clean water initiatives, and sustainable development projects for rural communities.
                     </p>
-                    <button onclick="showProgramInfo('community')" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors">
+                    <button onclick="showProgramInfo('community')" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors slide-reveal">
                         Learn More →
                     </button>
                 </div>
@@ -381,25 +947,25 @@
     <section id="impact" class="py-20 bg-white dark:bg-gray-800 transition-colors">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 slide-in">Our Impact</h2>
-                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto slide-in">
-                    Real stories and measurable outcomes from our work in communities across India.
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 slide-in letter-hover-effect">Our Impact</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto slide-in hover-paragraph">
+                    <span class="hover-word">Real</span> <span class="hover-word">stories</span> <span class="hover-word">and</span> <span class="hover-word">measurable</span> <span class="hover-word">outcomes</span> <span class="hover-word">from</span> <span class="hover-word">our</span> <span class="hover-word">work</span> <span class="hover-word">in</span> <span class="hover-word">communities</span> <span class="hover-word">across</span> <span class="hover-word">India.</span>
                 </p>
             </div>
             
             <!-- Success Stories -->
             <div class="grid md:grid-cols-3 gap-8 mb-16">
-                <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 card-hover fade-in">
+                <div class="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-700 dark:to-gray-600 rounded-2xl p-8 card-hover fade-in transition-colors">
                     <div class="flex items-center mb-6">
                         <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
                             P
                         </div>
                         <div>
-                            <h4 class="font-bold text-gray-900 text-lg">Priya Sharma</h4>
-                            <p class="text-sm text-gray-600">Village: Rampur, UP</p>
+                            <h4 class="font-bold text-gray-900 dark:text-white text-lg">Priya Sharma</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Village: Rampur, UP</p>
                         </div>
                     </div>
-                    <p class="text-gray-700 italic leading-relaxed">
+                    <p class="text-gray-700 dark:text-gray-200 italic leading-relaxed">
                         "Thanks to Anshumat Foundation's tailoring program, I now run my own business and support my family. I've trained 15 other women in my village, creating a network of empowered entrepreneurs."
                     </p>
                     <div class="flex text-yellow-400 mt-4">
@@ -407,17 +973,17 @@
                     </div>
                 </div>
                 
-                <div class="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-8 card-hover fade-in">
+                <div class="bg-gradient-to-br from-green-50 to-blue-50 dark:from-gray-700 dark:to-gray-600 rounded-2xl p-8 card-hover fade-in transition-colors">
                     <div class="flex items-center mb-6">
                         <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
                             R
                         </div>
                         <div>
-                            <h4 class="font-bold text-gray-900 text-lg">Rajesh Kumar</h4>
-                            <p class="text-sm text-gray-600">Village: Bhagalpur, Bihar</p>
+                            <h4 class="font-bold text-gray-900 dark:text-white text-lg">Rajesh Kumar</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Village: Bhagalpur, Bihar</p>
                         </div>
                     </div>
-                    <p class="text-gray-700 italic leading-relaxed">
+                    <p class="text-gray-700 dark:text-gray-200 italic leading-relaxed">
                         "The computer literacy program changed my life. I went from farming to working in a tech company in the city. Now I send money home and my children have better opportunities."
                     </p>
                     <div class="flex text-yellow-400 mt-4">
@@ -425,17 +991,17 @@
                     </div>
                 </div>
                 
-                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 card-hover fade-in">
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-gray-700 dark:to-gray-600 rounded-2xl p-8 card-hover fade-in transition-colors">
                     <div class="flex items-center mb-6">
                         <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
                             S
                         </div>
                         <div>
-                            <h4 class="font-bold text-gray-900 text-lg">Sunita Devi</h4>
-                            <p class="text-sm text-gray-600">Village: Durgapur, WB</p>
+                            <h4 class="font-bold text-gray-900 dark:text-white text-lg">Sunita Devi</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Village: Durgapur, WB</p>
                         </div>
                     </div>
-                    <p class="text-gray-700 italic leading-relaxed">
+                    <p class="text-gray-700 dark:text-gray-200 italic leading-relaxed">
                         "My daughter is the first in our family to complete high school, thanks to the foundation's education program. She dreams of becoming a teacher and helping other children."
                     </p>
                     <div class="flex text-yellow-400 mt-4">
@@ -476,9 +1042,9 @@
     <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors">
         <div class="max-w-4xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 slide-in">Get Involved</h2>
-                <p class="text-xl text-gray-600 dark:text-gray-300 slide-in">
-                    Join us in our mission to transform lives through education and community development.
+                <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 slide-in letter-hover-effect">Get Involved</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 slide-in hover-paragraph">
+                    <span class="hover-word">Join</span> <span class="hover-word">us</span> <span class="hover-word">in</span> <span class="hover-word">our</span> <span class="hover-word">mission</span> <span class="hover-word">to</span> <span class="hover-word">transform</span> <span class="hover-word">lives</span> <span class="hover-word">through</span> <span class="hover-word">education</span> <span class="hover-word">and</span> <span class="hover-word">community</span> <span class="hover-word">development.</span>
                 </p>
             </div>
             
@@ -621,7 +1187,7 @@
             
             <!-- Copyright -->
             <div class="border-t border-gray-800 pt-6 text-center">
-                <p class="text-gray-400 text-sm">© 2025 Anshumat Foundation. All rights reserved. Empowering communities through education.</p>
+                <p class="text-gray-400 text-sm">© 2024 Anshumat Foundation. All rights reserved. Empowering communities through education.</p>
             </div>
         </div>
     </footer>
@@ -650,6 +1216,22 @@
     </div>
 
     <script>
+        // Letter-by-letter hover effect
+        function addLetterHoverEffect() {
+            const elements = document.querySelectorAll('.letter-hover-effect');
+            elements.forEach(element => {
+                const text = element.textContent;
+                element.innerHTML = '';
+                
+                for (let i = 0; i < text.length; i++) {
+                    const span = document.createElement('span');
+                    span.textContent = text[i] === ' ' ? '\u00A0' : text[i]; // Use non-breaking space
+                    span.className = 'hover-letter';
+                    element.appendChild(span);
+                }
+            });
+        }
+
         // Smooth scrolling
         function scrollToSection(sectionId) {
             document.getElementById(sectionId).scrollIntoView({
@@ -805,6 +1387,7 @@
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             initializeDarkMode();
+            addLetterHoverEffect(); // Initialize letter hover effects
             
             // Dark mode toggle event listeners
             document.getElementById('dark-mode-toggle').addEventListener('click', toggleDarkMode);
@@ -844,5 +1427,5 @@
             });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'979f7874731b549c',t:'MTc1NzAwOTcwOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'979ff38004bc549c',t:'MTc1NzAxNDc0OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
